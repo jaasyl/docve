@@ -1,0 +1,5 @@
+/* src/admin/user/components/styles/Tabs.css */
+.tabs-root{ border-bottom:1px solid #e5e7eb; display:flex; gap:1.5rem }
+.tab{ padding-bottom:0.75rem; display:inline-flex; align-items:center; justify-content:center; text-decoration:none; color:#6b7280; font-weight:700 }
+.tab.active{ border-bottom:3px solid var(--primary); color:var(--primary) }
+.dark .tab{ color:#9ca3af }

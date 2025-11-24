@@ -1,0 +1,26 @@
+/* ========= THEME COLOR VARIABLES ========= */
+
+:root {
+  --primary: #3b82f6;
+
+  --bg: #0f172a;                /* Dark navy */
+  --panel-bg: #1e293b;           /* Dark panel */
+  --panel-variant: #162036;      /* Slightly darker */
+  --border: #334155;
+
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+
+  --accent-ghost: rgba(59, 130, 246, 0.12);
+}
+
+/* LIGHT MODE */
+:root:not(.dark) {
+  --bg: #f8fafc;
+  --panel-bg: white;
+  --panel-variant: #f1f5f9;
+  --border: #e2e8f0;
+
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+}

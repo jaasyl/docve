@@ -1,0 +1,49 @@
+:root {
+--primary: #135bec;
+--bg-light: #f6f6f8;
+--bg-dark: #101622;
+}
+.side-nav {
+width: 256px;
+padding: 16px;
+background: white;
+border-right: 1px solid #d1d5db;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+height: 100vh;
+}
+.dark .side-nav {
+background: #1c2534;
+border-right: 1px solid #374151;
+}
+.brand-row {
+display: flex;
+align-items: center;
+gap: 12px;
+padding-left: 8px;
+}
+.brand-icon svg {
+width: 32px;
+height: 32px;
+color: var(--primary);
+}
+.nav-links {
+margin-top: 24px;
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+.nav-item {
+padding: 10px 12px;
+border-radius: 8px;
+color: #374151;
+text-decoration: none;
+font-size: 14px;
+display: flex;
+align-items: center;
+}
+.nav-item.active {
+background: rgba(19, 91, 236, 0.2);
+color: var(--primary);
+}

@@ -1,0 +1,177 @@
+/* ===== Sidebar Container ===== */
+.sidebar {
+  width: 280px;
+  background: var(--panel-bg);
+  border-right: 1px solid var(--border);
+  padding: 20px;
+  overflow-y: auto;
+  backdrop-filter: blur(6px);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+
+/* ===== Section Headers ===== */
+.section-header {
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  font-weight: 600;
+  opacity: 0.9;
+  text-transform: uppercase;
+}
+
+
+/* ===== Switch Tabs ===== */
+.switch-tabs {
+  display: flex;
+  background: var(--panel-variant);
+  border-radius: 9px;
+  padding: 4px;
+  margin-bottom: 18px;
+  transition: background 0.25s ease;
+}
+
+.tab {
+  flex: 1;
+  padding: 7px 0;
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: 7px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.15s ease;
+}
+
+.tab:hover {
+  background: rgba(255,255,255,0.05);
+  color: var(--text-primary);
+}
+
+.tab.active {
+  background: var(--panel-bg);
+  color: var(--text-primary);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+}
+
+
+/* ===== Folder Section ===== */
+.folder {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 10px;
+  gap: 12px;
+  cursor: pointer;
+  transition: 
+    background 0.25s ease, 
+    color 0.25s ease,
+    transform 0.15s ease;
+}
+
+.folder:hover {
+  background: rgba(255,255,255,0.05);
+  transform: translateX(3px);
+}
+
+.folder.active {
+  background: var(--accent-ghost);
+  color: var(--primary);
+  border-left: 3px solid var(--primary);
+  transform: translateX(3px);
+}
+
+
+/* ===== File list inside folder ===== */
+.file-list {
+  margin-left: 14px;
+  border-left: 2px solid var(--accent-ghost);
+  padding-left: 14px;
+  padding-top: 8px;
+  transition: border-color 0.25s ease;
+}
+
+.file-item {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
+  color: var(--text-primary);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 
+    background 0.25s ease,
+    transform 0.15s ease;
+}
+
+.file-item:hover {
+  background: rgba(255,255,255,0.03);
+  transform: translateX(4px);
+}
+
+
+/* ===== Status dots ===== */
+.ready-dot,
+.processing-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 6px;
+  display: inline-block;
+}
+
+.ready-dot {
+  background: #10b981; /* green */
+}
+
+.processing-dot {
+  background: #fbbf24; /* yellow */
+}
+
+
+/* ===== Global Chat History items ===== */
+.history-item {
+  padding: 10px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.15s ease;
+}
+
+.history-item:hover {
+  background: rgba(255,255,255,0.05);
+  transform: translateX(3px);
+}
+
+.history-item .title {
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.history-item .time {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+
+/* ===== Footer Settings ===== */
+.sidebar-footer {
+  margin-top: 30px;
+  padding: 12px 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.25s ease, transform 0.15s ease;
+}
+
+.sidebar-footer:hover {
+  background: rgba(255,255,255,0.05);
+  transform: translateX(4px);
+}

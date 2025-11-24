@@ -1,0 +1,28 @@
+.page-heading {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 24px;
+}
+.page-heading h2 {
+margin: 0;
+font-size: 32px;
+font-weight: 700;
+color: #111827;
+}
+.dark .page-heading h2 {
+color: white;
+}
+.btn-primary {
+background: var(--primary);
+color: white;
+padding: 8px 16px;
+border: none;
+border-radius: 8px;
+font-size: 14px;
+font-weight: 700;
+display: flex;
+align-items: center;
+gap: 6px;
+cursor: pointer;
+}
