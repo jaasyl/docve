@@ -1,49 +1,188 @@
+/* -------------------------------- */
+/* ROOT COLORS */
+/* -------------------------------- */
 :root {
---primary: #135bec;
---bg-light: #f6f6f8;
---bg-dark: #101622;
+  --primary: #135bec;
+  --bg-light: #f6f6f8;
+  --bg-dark: #101622;
+  --panel-bg: #ffffff;
+  --panel-dark: #1C2534;
+  --muted: #6b7280;
 }
-.side-nav {
-width: 256px;
-padding: 16px;
-background: white;
-border-right: 1px solid #d1d5db;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-height: 100vh;
+
+/* -------------------------------- */
+/* MAIN LAYOUT */
+/* -------------------------------- */
+.app-root {
+  display: flex;
+  height: 100vh;
+  background: var(--bg-light);
+  color: #111;
 }
-.dark .side-nav {
-background: #1c2534;
-border-right: 1px solid #374151;
+
+.app-root.dark {
+  background: var(--bg-dark);
+  color: #fff;
 }
-.brand-row {
-display: flex;
-align-items: center;
-gap: 12px;
-padding-left: 8px;
+
+/* -------------------------------- */
+/* SIDENAV */
+/* -------------------------------- */
+.sidenav {
+  width: 256px;
+  background: var(--panel-bg);
+  padding: 16px;
+  box-sizing: border-box;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
+/* -------------------------------- */
+/* BRAND */
+/* -------------------------------- */
+.brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 4px 2px;
+}
+
 .brand-icon svg {
-width: 32px;
-height: 32px;
-color: var(--primary);
+  width: 36px;
+  height: 36px;
+  color: var(--primary);
 }
-.nav-links {
-margin-top: 24px;
-display: flex;
-flex-direction: column;
-gap: 8px;
+
+.brand-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: #111;
 }
+
+.brand-sub {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* -------------------------------- */
+/* NAV LIST */
+/* -------------------------------- */
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
 .nav-item {
-padding: 10px 12px;
-border-radius: 8px;
-color: #374151;
-text-decoration: none;
-font-size: 14px;
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #374151;
+  font-weight: 500;
+  cursor: pointer;
 }
+
+.nav-item .material-symbols-outlined {
+  font-size: 20px;
+}
+
+.nav-item:hover {
+  background: #f3f4f6;
+  color: var(--primary);
+}
+
+/* ACTIVE STATE */
 .nav-item.active {
-background: rgba(19, 91, 236, 0.2);
-color: var(--primary);
+  background: rgba(19, 91, 236, 0.12);
+  color: var(--primary);
+  border-bottom: 3px solid var(--primary);
+}
+
+/* -------------------------------- */
+/* BOTTOM SECTION */
+/* -------------------------------- */
+.nav-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* -------------------------------- */
+/* DROPDOWN HEADER */
+/* -------------------------------- */
+.dropdown-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #374151;
+  font-weight: 500;
+}
+
+.dropdown-header:hover {
+  background: #f3f4f6;
+  color: var(--primary);
+}
+
+/* ARROW */
+.dropdown-arrow {
+  margin-left: auto;
+  font-size: 20px;
+  opacity: 0.7;
+}
+
+/* -------------------------------- */
+/* DROPDOWN MENU */
+/* -------------------------------- */
+.dropdown-menu {
+  margin-top: 4px;
+  padding-left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dropdown-item {
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #374151;
+}
+
+.dropdown-item:hover {
+  background: #eef2ff;
+  color: #135bec;
+}
+
+/* -------------------------------- */
+/* NESTED SHELVES */
+/* -------------------------------- */
+.nested-shelves {
+  padding-left: 20px;
+  margin-top: 4px;
+  border-left: 2px solid rgba(19, 91, 236, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dropdown-sub-item {
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #4b5563;
+  border-radius: 8px;
+}
+
+.dropdown-sub-item:hover {
+  background: #e5e7eb;
+  color: #135bec;
 }

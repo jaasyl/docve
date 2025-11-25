@@ -1,5 +1,12 @@
-/* src/admin/user/components/styles/Tabs.css */
-.tabs-root{ border-bottom:1px solid #e5e7eb; display:flex; gap:1.5rem }
-.tab{ padding-bottom:0.75rem; display:inline-flex; align-items:center; justify-content:center; text-decoration:none; color:#6b7280; font-weight:700 }
-.tab.active{ border-bottom:3px solid var(--primary); color:var(--primary) }
-.dark .tab{ color:#9ca3af }
+.tabs-row{
+  border-bottom:1px solid #e5e7eb;
+  padding-bottom:10px;
+  display:flex; gap:20px;
+}
+
+.tab{
+  background:transparent; border:0; padding:12px 6px; font-weight:700; cursor:pointer;
+  color:#6b7280;
+  border-bottom:3px solid transparent;
+}
+.tab.active{ color:var(--primary); border-bottom-color:var(--primary); }

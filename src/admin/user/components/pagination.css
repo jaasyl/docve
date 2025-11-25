@@ -1,0 +1,10 @@
+.card{ border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(2,6,23,0.06); background:#fff; }
+.pagination-row{ display:flex; justify-content:space-between; align-items:center; padding:16px; border-top:1px solid #e5e7eb; }
+.pagination-info{ color:#6b7280; font-size:14px; }
+
+.pagination-controls{ display:inline-flex; gap:6px; align-items:center; }
+.page-btn{
+  padding:6px 10px; border:1px solid #d1d5db; background:#fff; border-radius:6px; cursor:pointer; font-size:13px; color:#374151;
+}
+.page-btn.active{ background: rgba(19,91,236,0.12); color: var(--primary); border-color: var(--primary); }
+.page-btn:hover{ background:#f3f4f6; }

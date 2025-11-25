@@ -2,6 +2,7 @@
   padding: 16px 24px;
   border-top: 1px solid var(--border);
   background: var(--panel-bg);
+  flex-shrink: 0;
 }
 
 .input-box {
@@ -10,25 +11,51 @@
   margin: auto;
 }
 
-textarea {
+/* TEXTAREA FIX – make sure button fits exactly */
+.input-box textarea {
   width: 100%;
   background: var(--bg);
   color: var(--text-primary);
   border-radius: 12px;
   border: 1px solid var(--border);
-  padding: 14px 50px 14px 14px;
+
+  /* IMPORTANT → allows the send button to fit perfectly inside */
+  padding: 14px 60px 14px 14px;
+
   resize: none;
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
 }
 
+/* SEND BUTTON FIX – sits perfectly in bottom-right corner */
 .send-btn {
   position: absolute;
-  right: 10px;
-  bottom: 10px;
+
+  /* THESE TWO LINES FIX EVERYTHING */
+  right: 12px;
+  bottom: 12px;
+
+  width: 36px;
+  height: 36px;
+
   background: var(--primary);
   color: white;
   border: none;
-  border-radius: 8px;
-  height: 40px;
-  width: 40px;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.send-btn:hover {
+  background: #2563eb;
+}
+
+.send-btn .material-symbols-outlined {
+  font-size: 22px;
 }

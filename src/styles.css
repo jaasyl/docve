@@ -1,26 +1,66 @@
-/* ========= THEME COLOR VARIABLES ========= */
-
-:root {
-  --primary: #3b82f6;
-
-  --bg: #0f172a;                /* Dark navy */
-  --panel-bg: #1e293b;           /* Dark panel */
-  --panel-variant: #162036;      /* Slightly darker */
-  --border: #334155;
-
-  --text-primary: #e2e8f0;
-  --text-secondary: #94a3b8;
-
-  --accent-ghost: rgba(59, 130, 246, 0.12);
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* LIGHT MODE */
-:root:not(.dark) {
-  --bg: #f8fafc;
-  --panel-bg: white;
-  --panel-variant: #f1f5f9;
-  --border: #e2e8f0;
+html, body, #root {
+  height: 100%;
+  font-family: "Inter", sans-serif;
+}
 
-  --text-primary: #1e293b;
-  --text-secondary: #64748b;
+/* ROOT */
+.app-root {
+  height: 100vh;
+  display: flex;
+  background: #f8fafc;
+  position: relative;
+}
+
+/* MAIN LAYOUT */
+.app-main {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* RIGHT AREA */
+.chat-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #f1f5f9;
+  overflow: hidden;
+}
+
+/* FLOATING BUTTON */
+.floating-button {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #1f2937;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.floating-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.floating-button .material-symbols-outlined {
+  font-size: 20px;
 }

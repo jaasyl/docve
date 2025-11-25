@@ -1,19 +1,18 @@
-// ---------------------- src/admin/user/components/PageHeader.jsx ----------------------
 import React from "react";
 import "./pageheader.css";
 
-
 export default function PageHeader() {
-return (
-<div className="page-heading">
-<div>
-<h2>My Shelves</h2>
-<p>Manage your personal and shared document collections.</p>
-</div>
-<button className="btn-primary">
-<span className="material-symbols-outlined">add</span>
-Create Shelf
-</button>
-</div>
-);
+  return (
+    <div className="page-header">
+      <div className="page-title">
+        <h1>My Shelves</h1>
+        <p className="page-sub">Manage your personal and shared document collections.</p>
+      </div>
+
+      <button className="btn-primary">
+        <span className="material-symbols-outlined">add</span>
+        <span>Create Shelf</span>
+      </button>
+    </div>
+  );
 }
