@@ -5,13 +5,7 @@ export default function DoclingSidebarUI() {
   return (
     <aside className="docling-sidebar">
       {/* SIDEBAR HEADER */}
-      <div className="sidebar-header">
-        <div className="sidebar-logo">
-          <span className="material-symbols-outlined logo-icon">data_object</span>
-          <h1 className="sidebar-title">Docling</h1>
-        </div>
-        <ThemeToggle />
-      </div>
+      
 
       <div className="sidebar-scroll">
 
@@ -114,39 +108,15 @@ export default function DoclingSidebarUI() {
               </div>
             </div>
 
-          </div>
-        </div>
+            <div className="history-item">
+              <p className="history-title">Q4 Financials Highlights</p>
+              <div className="history-meta">
+                <p className="history-time">4 days ago</p>
 
-        {/* ================= SAVED REPORTS ================= */}
-        <div className="section">
-          <div className="section-header-row">
-            <h2 className="section-title">SAVED REPORTS</h2>
-            <span className="material-symbols-outlined icon">expand_more</span>
-          </div>
-
-          <div className="saved-list">
-
-            <div className="saved-item">
-              <div className="left">
-                <span className="material-symbols-outlined bookmark">bookmark</span>
-                <p>Q4 Earnings Summary</p>
-              </div>
-
-              <div className="bubble-tag purple">
-                <span className="material-symbols-outlined tag-icon">folder</span>
-                <p>Q4 Financials</p>
-              </div>
-            </div>
-
-            <div className="saved-item">
-              <div className="left">
-                <span className="material-symbols-outlined bookmark">bookmark</span>
-                <p>Competitor Analysis</p>
-              </div>
-
-              <div className="bubble-tag blue">
-                <span className="material-symbols-outlined tag-icon">folder</span>
-                <p>Project Phoenix</p>
+                <div className="bubble-tag purple">
+                  <span className="material-symbols-outlined tag-icon">folder</span>
+                  <p>Q4 Financials</p>
+                </div>
               </div>
             </div>
 

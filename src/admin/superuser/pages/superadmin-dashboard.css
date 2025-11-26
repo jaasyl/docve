@@ -1,0 +1,116 @@
+.dashboard-container {
+  padding: 30px;
+  color: #1e293b;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dashboard-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+}
+.add-user-btn {
+  background: #3b82f6;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* TOP CARDS */
+.stats-row {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.stat-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+}
+.stat-card h2 {
+  font-size: 26px;
+  margin-top: 10px;
+}
+.positive {
+  color: #16a34a;
+  font-size: 14px;
+}
+
+/* SEARCH BAR */
+.search-bar input {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+}
+
+/* MID GRID */
+.mid-grid {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.chart-card, .right-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+}
+
+/* CHART PLACEHOLDER */
+.chart-placeholder {
+  margin-top: 20px;
+  height: 250px;
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+
+/* RECENT USERS */
+.right-card ul {
+  margin-top: 20px;
+}
+.right-card li {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.time {
+  font-size: 12px;
+  color: gray;
+}
+
+/* BOTTOM GRID */
+.bottom-grid {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.activity-card, .health-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+}
+
+/* SYSTEM HEALTH */
+.ok {
+  color: #16a34a;
+}
+.warning {
+  color: #eab308;
+}

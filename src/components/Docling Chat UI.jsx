@@ -3,7 +3,6 @@ import "./Docling Chat UI.css";
 export default function DoclingChatUI() {
   return (
     <div className="chat-area">
-      
       <div className="chat-header">
         <p>
           <span className="sub">Chatting with:</span>
@@ -11,33 +10,50 @@ export default function DoclingChatUI() {
         </p>
       </div>
 
-      <div className="messages">
-
-        {/* BOT MESSAGE */}
-        <div className="msg-bot">
-          <div className="bot-icon">
-            <span className="material-symbols-outlined">data_object</span>
+      <div className="chat-thread">
+        {/* BOT CARD */}
+        <div className="bot-card">
+          <div className="bot-card-header">
+            <div className="bot-icon">
+              <span className="material-symbols-outlined">data_object</span>
+            </div>
+            <div>
+              <p className="meta-title">Summary of Annual Report 2023</p>
+              <p className="meta-sub">Generated 1 min ago</p>
+            </div>
           </div>
 
-          <div className="bubble bot">
-            <p className="title">Summary of Annual Report 2023</p>
+          <div className="bot-card-body">
             <p>
-              The annual report for 2023 highlights a 15% year-over-year revenue growth…
+              The annual report for 2023 highlights a 15% year-over-year revenue growth,
+              primarily driven by the successful launch of Project Phoenix. Key financial
+              metrics include a net profit margin of 12% and an earnings per share (EPS)
+              of $2.50. Would you like me to elaborate on a specific section?
             </p>
+          </div>
 
-            <div className="actions">
+          <div className="card-actions">
+            <button type="button">
               <span className="material-symbols-outlined">thumb_up</span>
+            </button>
+            <button type="button">
               <span className="material-symbols-outlined">thumb_down</span>
+            </button>
+            <button type="button">
               <span className="material-symbols-outlined">share</span>
+            </button>
+            <button type="button">
               <span className="material-symbols-outlined">file_download</span>
+            </button>
+            <button type="button">
               <span className="material-symbols-outlined">bookmark</span>
-            </div>
+            </button>
           </div>
         </div>
 
         {/* USER MESSAGE */}
-        <div className="msg-user">
-          <div className="bubble user">
+        <div className="user-row">
+          <div className="user-bubble">
             Can you explain the main contributors to the revenue growth in more detail?
           </div>
         </div>

@@ -6,8 +6,10 @@ import AIInputAreaUI from "./components/AI input area UI";
 
 import ShelvesTable from "./admin/user/components/shelvestable";
 import MyShelves from "./admin/user/pages/myshelves";
+import SuperAdmin from "./admin/superuser/pages/superadmin";
 
 import "./styles.css";
+import Nav from "./components/Nav";
 
 export default function App() {
   return (
@@ -18,27 +20,32 @@ export default function App() {
         <Route
           path="/"
           element={
-            <div className="app-root">
-              <div className="app-main">
+            <div className="app-wrapper">
 
-                {/* SIDEBAR */}
-                <DoclingSidebarUI />
+              {/* 🔹 NAVBAR AT TOP */}
+              <Nav />
 
-                {/* RIGHT PANEL */}
-                <div className="chat-column">
-                  {/* CHAT BODY */}
-                  <DoclingChatUI />
+              {/* MAIN APP SECTION BELOW NAV */}
+              <div className="app-root">
+                <div className="app-main">
 
-                  {/* INPUT AREA */}
-                  <AIInputAreaUI />
+                  {/* SIDEBAR */}
+                  <DoclingSidebarUI />
+
+                  {/* RIGHT PANEL */}
+                  <div className="chat-column">
+                    <DoclingChatUI />
+                    <AIInputAreaUI />
+                  </div>
+
                 </div>
               </div>
 
               {/* FLOATING BUTTON */}
               <button className="floating-button">
-                <span className="material-symbols-outlined">search</span>
-                <span className="material-symbols-outlined">data_object</span>
+                <span className="material-symbols-outlined">mic</span>
               </button>
+
             </div>
           }
         />
@@ -46,8 +53,10 @@ export default function App() {
         {/* ADMIN */}
         <Route path="/shelves" element={<ShelvesTable />} />
         <Route path="/admin" element={<MyShelves />} />
+        <Route path="/admin-1" element={<SuperAdmin />} />
 
       </Routes>
     </BrowserRouter>
   );
 }
+

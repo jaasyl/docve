@@ -36,15 +36,16 @@ export default function SideNav({ onShelfSelect }) {
 
         <nav className="nav-list">
 
-          <a className="nav-item" href="#">
+         <li onClick={() => onShelfSelect(null)} className="nav-item">
             <span className="material-symbols-outlined">dashboard</span>
-            <span>Dashboard</span>
-          </a>
+            <p>Dashboard</p>
+          </li>
+
 
           <Link className="nav-item" to="/admin">
-  <span className="material-symbols-outlined">folder</span>
-  <span>My Shelves</span>
-</Link>
+            <span className="material-symbols-outlined">folder</span>
+            <span>My Shelves</span>
+          </Link>
 
 
           {/* Manage Document */}

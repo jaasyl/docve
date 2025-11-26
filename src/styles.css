@@ -8,22 +8,30 @@
 html, body, #root {
   height: 100%;
   font-family: "Inter", sans-serif;
+  background: #f5f7fb;
+  color: #0f172a;
+
+  /* PREVENT PAGE SCROLL */
+  overflow: hidden;
 }
 
-/* ROOT */
+/* ROOT (below navbar) */
 .app-root {
-  height: 100vh;
+  flex: 1;
   display: flex;
-  background: #f8fafc;
+  background: #ffffff;
   position: relative;
+  overflow: hidden;
+  height: 100%; /* LET FLEX HANDLE THE SIZE */
 }
+
 
 /* MAIN LAYOUT */
 .app-main {
   flex: 1;
   display: flex;
-  overflow: hidden;
-  height: 100vh;
+  height: 100%;
+  overflow: hidden; /* prevents outer scrolling */
 }
 
 /* RIGHT AREA */
@@ -31,36 +39,72 @@ html, body, #root {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: #f1f5f9;
-  overflow: hidden;
+  background: #f8fafc;
+  border-left: 1px solid #e5e7eb;
+  overflow: hidden; /* prevents overflow */
+}
+
+/* CHAT BODY (scrollable) */
+.chat-area {
+  flex: 1;
+  overflow-y: auto;     /* ONLY this scrolls */
+  overflow-x: hidden;
+  padding: 16px;
+}
+
+/* INPUT AREA (fixed at bottom) */
+.ai-input-area {
+  flex-shrink: 0;
+  padding: 16px;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
 }
 
 /* FLOATING BUTTON */
 .floating-button {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
+  bottom: 32px;
+  right: 32px;
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: #1f2937;
-  color: white;
-  border: none;
+  background: #ffe4cc;
+  color: #1f2937;
+  border: 1px solid #f1c9a3;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);
   z-index: 1000;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .floating-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(15, 23, 42, 0.2);
 }
 
 .floating-button .material-symbols-outlined {
-  font-size: 20px;
+  font-size: 24px;
+}
+/* Wrapper includes navbar + content */
+.app-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;   /* prevent whole page scroll */
+}
+
+/* NAV must not shrink or stretch content */
+nav {
+  flex-shrink: 0;
+  z-index: 2000;
+}
+
+/* Content below nav */
+.app-root {
+  flex: 1;            /* take remaining height */
+  display: flex;
+  overflow: hidden;
 }
