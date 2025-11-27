@@ -9,7 +9,7 @@ import MyShelves from "./admin/user/pages/myshelves";
 import SuperAdmin from "./admin/superuser/pages/superadmin";
 
 import "./styles.css";
-import Nav from "./components/Nav";
+import MainHeader from "./components/MainHeader";
 
 export default function App() {
   return (
@@ -22,23 +22,22 @@ export default function App() {
           element={
             <div className="app-wrapper">
 
-              {/* 🔹 NAVBAR AT TOP */}
-              <Nav />
-
-              {/* MAIN APP SECTION BELOW NAV */}
+              {/* MAIN APP SECTION */}
               <div className="app-root">
-                <div className="app-main">
 
-                  {/* SIDEBAR */}
-                  <DoclingSidebarUI />
+                {/* SIDEBAR */}
+                <DoclingSidebarUI />
 
-                  {/* RIGHT PANEL */}
+                {/* RIGHT PANEL */}
+                <div className="main-column">
+                  <MainHeader />
+
                   <div className="chat-column">
                     <DoclingChatUI />
                     <AIInputAreaUI />
                   </div>
-
                 </div>
+
               </div>
 
               {/* FLOATING BUTTON */}

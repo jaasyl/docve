@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom";
-
 import React, { useState } from "react";
 import "./sidenav.css";
 
-export default function SideNav({ onShelfSelect }) {
+export default function SideNav({
+  onShelfSelect,
+  onMyShelvesClick,
+  onDashboardClick,
+  activeTab,
+}) {
   const [openDropdown, setOpenDropdown] = useState(false);
   const [openPersonal, setOpenPersonal] = useState(false);
 
@@ -20,8 +23,8 @@ export default function SideNav({ onShelfSelect }) {
 
   return (
     <aside className="sidenav">
-      <div>
-        <div className="brand">
+        <div>
+          <div className="brand" onClick={onDashboardClick}>
           <div className="brand-icon" aria-hidden>
             <svg viewBox="0 0 48 48">
               <path d="M24 45.8096C19.6865 ... Z" fill="currentColor" />
@@ -36,16 +39,25 @@ export default function SideNav({ onShelfSelect }) {
 
         <nav className="nav-list">
 
-         <li onClick={() => onShelfSelect(null)} className="nav-item">
+          <div
+            onClick={onDashboardClick}
+            className={`nav-item ${activeTab === "dashboard" ? "active" : ""}`}
+            style={{ cursor: "pointer" }}
+          >
             <span className="material-symbols-outlined">dashboard</span>
-            <p>Dashboard</p>
-          </li>
+            <p>Admin Dashboard</p>
+          </div>
 
 
-          <Link className="nav-item" to="/admin">
+
+          <div
+            className={`nav-item ${activeTab === "myshelves" ? "active" : ""}`}
+            onClick={onMyShelvesClick}
+            style={{ cursor: "pointer" }}
+          >
             <span className="material-symbols-outlined">folder</span>
             <span>My Shelves</span>
-          </Link>
+          </div>
 
 
           {/* Manage Document */}

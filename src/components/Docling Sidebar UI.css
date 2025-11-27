@@ -31,26 +31,24 @@
 .sidebar-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--border-light);
+  padding: 24px 24px;
   flex-shrink: 0;
 }
 
 .sidebar-logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .logo-icon {
-  font-size: 24px;
+  font-size: 28px;
   color: var(--primary);
 }
 
 .sidebar-title {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
   color: var(--text-primary-light);
   margin: 0;
 }
@@ -152,11 +150,11 @@
 }
 
 .folder-row:hover {
-  background: rgba(0,0,0,0.05);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .folder-row.active {
-  background: rgba(59,130,246,0.15);
+  background: rgba(59, 130, 246, 0.15);
 }
 
 .folder-icon {
@@ -178,7 +176,7 @@
 /* File Tree */
 .file-tree {
   margin-left: 20px;
-  border-left: 2px solid rgba(59,130,246,0.3);
+  border-left: 2px solid rgba(59, 130, 246, 0.3);
   padding-left: 16px;
   padding-top: 10px;
   display: flex;
@@ -195,7 +193,7 @@
 }
 
 .file-item:hover {
-  background: rgba(0,0,0,0.05);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .file-icon-wrap {
@@ -238,8 +236,13 @@
   border-radius: 50%;
 }
 
-.ready-dot { background: #10b981; }
-.processing-dot { background: #fbbf24; }
+.ready-dot {
+  background: #10b981;
+}
+
+.processing-dot {
+  background: #fbbf24;
+}
 
 
 /* History Section */
@@ -250,7 +253,7 @@
 }
 
 .history-item:hover {
-  background: rgba(0,0,0,0.05);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .history-title {
@@ -278,18 +281,18 @@
   gap: 4px;
   font-size: 11px;
   padding: 2px 6px;
-  background: rgba(59,130,246,0.15);
+  background: rgba(59, 130, 246, 0.15);
   color: var(--primary);
   border-radius: 10px;
 }
 
 .bubble-tag.purple {
-  background: rgba(147,51,234,0.15);
+  background: rgba(147, 51, 234, 0.15);
   color: #9333ea;
 }
 
 .bubble-tag.blue {
-  background: rgba(59,130,246,0.15);
+  background: rgba(59, 130, 246, 0.15);
   color: var(--primary);
 }
 
@@ -309,7 +312,7 @@
 }
 
 .sidebar-footer:hover {
-  background: rgba(0,0,0,0.05);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .sidebar-footer p {

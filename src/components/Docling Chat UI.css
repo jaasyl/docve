@@ -18,7 +18,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  background: #f5f7fb;
+  background: #ffffff;
   color: var(--text);
   overflow: hidden;
 }
@@ -29,6 +29,8 @@
   align-items: center;
   padding: 0 32px;
   background: var(--panel);
+  /* border-bottom: 1px solid var(--border); */
+  /* Removed border to match clean look if needed, but screenshot has a line? Hard to tell. Let's keep it but maybe lighter? Or actually the screenshot shows a header line. */
   border-bottom: 1px solid var(--border);
   font-size: 16px;
   font-weight: 600;
@@ -48,7 +50,8 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
-  background: var(--bg);
+  background: var(--panel);
+  /* Changed to white as per screenshot? Screenshot background looks white or very light gray. */
 }
 
 /* =====================================================
@@ -57,10 +60,11 @@
 .bot-card {
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 28px;
-  max-width: 720px;
-  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 800px;
+  /* box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08); */
+  /* Reduced shadow for cleaner look */
 }
 
 .bot-card-header {
@@ -71,10 +75,12 @@
 }
 
 .bot-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: rgba(37, 99, 235, 0.12);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  /* Circle */
+  background: transparent;
+  border: 1px solid var(--primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,8 +88,8 @@
 }
 
 .bot-card-header .meta-title {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 700;
   margin: 0;
   color: var(--text);
 }
@@ -92,39 +98,43 @@
   font-size: 13px;
   color: var(--text-muted);
   margin: 0;
+  display: none;
+  /* Screenshot doesn't show timestamp in header */
 }
 
 .bot-card-body p {
   font-size: 15px;
-  line-height: 1.65;
+  line-height: 1.6;
   color: var(--text-secondary);
   margin: 0;
 }
 
 .card-actions {
   display: flex;
-  gap: 8px;
-  margin-top: 22px;
+  gap: 16px;
+  margin-top: 16px;
 }
 
 .card-actions button {
-  width: 38px;
-  height: 38px;
-  border-radius: 999px;
-  border: 1px solid #e2e8f0;
-  background: #fff;
-  color: #475467;
+  width: auto;
+  height: auto;
+  border: none;
+  background: none;
+  color: #9ca3af;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  padding: 0;
 }
 
 .card-actions button:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18);
+  color: var(--text-secondary);
+  box-shadow: none;
+}
+
+.card-actions button .material-symbols-outlined {
+  font-size: 20px;
 }
 
 /* =====================================================
@@ -133,17 +143,28 @@
 .user-row {
   display: flex;
   justify-content: flex-end;
+  align-items: flex-end;
+  gap: 12px;
 }
 
 .user-bubble {
-  background: var(--primary);
+  background: #3b82f6;
   color: #fff;
-  padding: 16px 22px;
-  border-radius: 20px 20px 4px 20px;
-  max-width: 520px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  max-width: 600px;
   font-size: 15px;
-  line-height: 1.6;
-  box-shadow: 0 12px 25px rgba(37, 99, 235, 0.25);
+  line-height: 1.5;
+}
+
+.chat-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  background-color: #e5e7eb;
+  flex-shrink: 0;
 }
 
 /* =====================================================
@@ -156,4 +177,3 @@
     "GRAD" 0,
     "opsz" 24;
 }
-

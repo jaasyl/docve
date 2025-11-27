@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import SideNav from "../components/SideNav";
-import PageHeader from "../components/PageHeader";
-import Tabs from "../components/Tabs";
-import SearchBar from "../components/SearchBar";
-import ShelvesTable from "../components/shelvestable";
-import Pagination from "../components/Pagination";
-import ManageDocuments from "../components/ManageDocument"; // NEW
+import SideNav from "../components/sidenav";
+import ShelvesView from "../components/ShelvesView";
+import ManageDocuments from "../components/ManageDocument";
+import AdminDashboard from "../components/AdminDashboard";
 
 
 import "./myshelf.css";
@@ -14,29 +11,66 @@ import "./myshelf.css";
 
 export default function MyShelves() {
   const [selectedShelf, setSelectedShelf] = useState(null);
+  const [activeTab, setActiveTab] = useState("dashboard");
+  const [rows, setRows] = useState([
+    { name: "Project Alpha Docs", type: "Personal", date: "2023-10-26", docs: 15 },
+    { name: "Q4 Marketing Reports", type: "Personal", date: "2023-10-22", docs: 8 },
+    { name: "Legal Contracts", type: "Personal", date: "2023-09-15", docs: 32 },
+    { name: "Research Papers", type: "Personal", date: "2023-09-01", docs: 5 },
+  ]);
+
+  const handleCreateShelf = (newShelf) => {
+    const shelfData = {
+      ...newShelf,
+      date: new Date().toISOString().split('T')[0],
+      docs: 0
+    };
+    setRows([shelfData, ...rows]);
+  };
+
+  const handleUploadError = () => {
+    if (!selectedShelf) return;
+    setRows(prevRows => prevRows.map(row =>
+      row.name === selectedShelf ? { ...row, hasError: true } : row
+    ));
+  };
+
+  const handleDashboardClick = () => {
+    setActiveTab("dashboard");
+    setSelectedShelf(null);
+  };
+
+  const handleMyShelvesClick = () => {
+    setActiveTab("myshelves");
+    setSelectedShelf(null);
+  };
+
+  const handleShelfSelect = (shelf) => {
+    setSelectedShelf(shelf);
+    setActiveTab("shelf");
+  };
+
+  let content = null;
+
+  if (activeTab === "dashboard") {
+    content = <AdminDashboard />;
+  } else if (selectedShelf) {
+    content = <ManageDocuments shelf={selectedShelf} onUploadError={handleUploadError} />;
+  } else {
+    content = <ShelvesView rows={rows} onCreateShelf={handleCreateShelf} />;
+  }
 
   return (
     <div className="app-root">
-      {/* Pass callback to sidebar */}
-      <SideNav onShelfSelect={setSelectedShelf} />
+      <SideNav
+        onShelfSelect={handleShelfSelect}
+        onMyShelvesClick={handleMyShelvesClick}
+        onDashboardClick={handleDashboardClick}
+        activeTab={activeTab}
+      />
 
       <main className="main-content">
-        <div className="page-inner">
-          {/* If user clicked a shelf → show ManageDocuments */}
-          {selectedShelf ? (
-            <ManageDocuments shelf={selectedShelf} />
-          ) : (
-            <>
-              <PageHeader />
-              <Tabs />
-              <div className="card">
-                <SearchBar />
-                <ShelvesTable />
-                <Pagination />
-              </div>
-            </>
-          )}
-        </div>
+        <div className="page-inner">{content}</div>
       </main>
     </div>
   );

@@ -8,7 +8,7 @@ export default function SuperAdminDashboard() {
 
       {/* HEADER */}
       <div className="dashboard-header">
-        <h2>Dashboard</h2>
+        <h2>Superadmin Dashboard</h2>
         <p>Welcome back, Admin! Here's an overview of your system.</p>
         <button className="add-user-btn">+ Add New User</button>
       </div>

@@ -56,6 +56,13 @@ export default function DoclingChatUI() {
           <div className="user-bubble">
             Can you explain the main contributors to the revenue growth in more detail?
           </div>
+          <div
+            className="chat-avatar"
+            style={{
+              backgroundImage:
+                "url('https://lh3.googleusercontent.com/aida-public/AB6AXuADwHLSxo_5qRsvc5nGLRElukVa-Qp2jy_n-VZ24BYq6dWfb2T3CFtPdFGBvqOZzHYyPoGKB3kme5mOotumfdjCoP9hHj6BLDd9hRitar5IjyAGp3cZnW821mi9yl1ms0S4L8eaQhprpJ1fsfn-hQopyJ33eJLRykx5K8TZHWZtuvQbeETr6-sjZIJGrUW-PC5Ykuwpf5KLRVRIYuJZL-fiy4jwVT30HXmJ0jzaixenZTxJJJv8txlaQ77pPefRc0H00bS8of3nZ8Ta')"
+            }}
+          ></div>
         </div>
       </div>
     </div>

@@ -1,13 +1,7 @@
 import React from "react";
 import "./shelvestable.css";
 
-export default function ShelvesTable() {
-  const rows = [
-    { name: "Project Alpha Docs", type: "Personal", date: "2023-10-26", docs: 15 },
-    { name: "Q4 Marketing Reports", type: "Personal", date: "2023-10-22", docs: 8 },
-    { name: "Legal Contracts", type: "Personal", date: "2023-09-15", docs: 32 },
-    { name: "Research Papers", type: "Personal", date: "2023-09-01", docs: 5 },
-  ];
+export default function ShelvesTable({ rows }) {
 
   return (
     <div className="table-wrap">
@@ -25,7 +19,18 @@ export default function ShelvesTable() {
         <tbody>
           {rows.map((r, i) => (
             <tr key={i}>
-              <td className="name">{r.name}</td>
+              <td className="name">
+                {r.name}
+                {r.hasError && (
+                  <span
+                    className="material-symbols-outlined"
+                    style={{ color: "#dc2626", fontSize: "18px", marginLeft: "8px", verticalAlign: "middle" }}
+                    title="Upload Failed"
+                  >
+                    error
+                  </span>
+                )}
+              </td>
               <td>{r.type}</td>
               <td>{r.date}</td>
               <td className="center">{r.docs}</td>
