@@ -8,6 +8,8 @@ import ShelvesTable from "./admin/user/components/shelvestable";
 import MyShelves from "./admin/user/pages/myshelves";
 import SuperAdmin from "./admin/superuser/pages/superadmin";
 
+import ApiDemo from "./components/ApiDemo";  // ✅ Confirmed correct path
+
 import "./styles.css";
 import MainHeader from "./components/MainHeader";
 
@@ -54,8 +56,10 @@ export default function App() {
         <Route path="/admin" element={<MyShelves />} />
         <Route path="/admin-1" element={<SuperAdmin />} />
 
+        {/* API TEST PAGE */}
+        <Route path="/api-demo" element={<ApiDemo />} />
+   
       </Routes>
     </BrowserRouter>
   );
 }
-
