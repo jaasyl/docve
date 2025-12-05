@@ -2,7 +2,7 @@
 /* ROOT COLORS */
 /* -------------------------------- */
 :root {
-  --primary: #135bec;
+  --primary: #374151;
   --bg-light: #f6f6f8;
   --bg-dark: #101622;
   --panel-bg: #ffffff;
@@ -95,14 +95,14 @@
 
 .nav-item:hover {
   background: #f3f4f6;
-  color: var(--primary);
+  color: #374151;
 }
 
 /* ACTIVE STATE */
 .nav-item.active {
-  background: rgba(19, 91, 236, 0.12);
-  color: var(--primary);
-  border-bottom: 3px solid var(--primary);
+  background: #f3f4f6;
+  color: #111827;
+  border-bottom: 3px solid #d1d5db;
 }
 
 /* -------------------------------- */
@@ -130,7 +130,7 @@
 
 .dropdown-header:hover {
   background: #f3f4f6;
-  color: var(--primary);
+  color: #374151;
 }
 
 /* ARROW */
@@ -159,8 +159,8 @@
 }
 
 .dropdown-item:hover {
-  background: #eef2ff;
-  color: #135bec;
+  background: #f3f4f6;
+  color: #374151;
 }
 
 /* -------------------------------- */
@@ -169,7 +169,7 @@
 .nested-shelves {
   padding-left: 20px;
   margin-top: 4px;
-  border-left: 2px solid rgba(19, 91, 236, 0.15);
+  border-left: 2px solid #e5e7eb;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -185,5 +185,5 @@
 
 .dropdown-sub-item:hover {
   background: #e5e7eb;
-  color: #135bec;
+  color: #374151;
 }

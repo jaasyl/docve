@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./CreateShelfModal.css";
+import { createShelf } from "../../../services/Shelfapi"; // 👈 adjust path if needed
 
 export default function CreateShelfModal({ isOpen, onClose, onSave }) {
     const [name, setName] = useState("");
@@ -8,13 +9,42 @@ export default function CreateShelfModal({ isOpen, onClose, onSave }) {
 
     if (!isOpen) return null;
 
-    const handleSave = () => {
+    const handleSave = async () => {
         if (!name.trim()) return;
-        onSave({ name, description, type });
-        setName("");
-        setDescription("");
-        setType("Personal");
-        onClose();
+
+        const shelfData = { name, description, type };
+
+        try {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                alert("You are not logged in.");
+                return;
+            }
+
+            // ✅ LOG #1 — BEFORE API CALL
+            console.log("Sending shelf:", shelfData);
+
+            // 🔥 Call backend API
+            const createdShelf = await createShelf(shelfData, token);
+
+            // ✅ LOG #2 — AFTER API RESPONSE
+            console.log("API response:", createdShelf);
+
+            // Call parent callback with created shelf (if provided)
+            if (onSave) {
+                onSave(createdShelf);
+            }
+
+            // Reset form
+            setName("");
+            setDescription("");
+            setType("Personal");
+
+            onClose();
+        } catch (error) {
+            console.error("Error creating shelf:", error);
+            alert("Failed to create shelf. Please try again.");
+        }
     };
 
     return (

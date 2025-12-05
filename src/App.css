@@ -11,9 +11,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -22,6 +24,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -40,12 +43,26 @@
 .read-the-docs {
   color: #888;
 }
-:root{
-  --primary: #135bec;
+
+:root {
+  --primary: #374151;
 }
 
 /* dark mode support using .dark on <html> or <body> */
-.dark .sidenav{ background: #0f1724; color:#e6eefc; }
-.dark .card{ background: #0e1721; }
-.dark .shelves-table tbody tr{ background: #0e1721; color:#e6eefc; }
-.dark .page-title h1{ color:#fff; }
+.dark .sidenav {
+  background: #0f1724;
+  color: #e6eefc;
+}
+
+.dark .card {
+  background: #0e1721;
+}
+
+.dark .shelves-table tbody tr {
+  background: #0e1721;
+  color: #e6eefc;
+}
+
+.dark .page-title h1 {
+  color: #fff;
+}
