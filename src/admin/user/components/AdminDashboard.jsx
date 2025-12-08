@@ -1,45 +1,235 @@
+import React, { useState, useEffect } from "react";
 import "./adminDashboard.css";
-
-const stats = [
-  { label: "Total Users", value: "1,482", delta: "+5.2% vs last month" },
-  { label: "Active Users (Today)", value: "216", delta: "+1.8% vs yesterday" },
-  { label: "Documents Processed", value: "25,930", delta: "+12.4% vs last month" },
-  { label: "Total Storage Used", value: "452 GB", delta: "+2.1% vs last month" },
-];
-
-const recentUsers = [
-  { name: "Olivia Martin", email: "olivia.martin@email.com", time: "2 hours ago" },
-  { name: "Liam Johnson", email: "liam.j@email.com", time: "5 hours ago" },
-  { name: "Isabella Garcia", email: "isabella.g@email.com", time: "1 day ago" },
-  { name: "Noah Smith", email: "noah.s@email.com", time: "2 days ago" },
-];
-
-const activity = [
-  {
-    admin: "Admin User",
-    action: "Created new user: olivia.martin@email.com",
-    time: "2023-10-27 14:30:15",
-  },
-  {
-    admin: "Admin User",
-    action: "Updated system settings: Storage limit",
-    time: "2023-10-27 11:05:42",
-  },
-  {
-    admin: "Admin User",
-    action: "Deleted document: ID 8f7e2c9a",
-    time: "2023-10-26 09:12:03",
-  },
-];
-
-const health = [
-  { label: "API Status", state: "Operational" },
-  { label: "Database Connection", state: "Connected" },
-  { label: "Storage Service", state: "Online" },
-  { label: "Processing Queue", state: "Delayed (5 items)", variant: "warning" },
-];
+import {
+  getDashboardStats,
+  getRecentUsers,
+  getRecentActivity,
+  getHealth,
+} from "../../../services/adminDashboardApi";
 
 export default function AdminDashboard() {
+  // State management
+  const [stats, setStats] = useState([
+    { label: "Total Users", value: "...", delta: "Loading..." },
+    { label: "Active Users (Today)", value: "...", delta: "Loading..." },
+    { label: "Documents Processed", value: "...", delta: "Loading..." },
+    { label: "Total Storage Used", value: "...", delta: "Loading..." },
+  ]);
+  const [recentUsers, setRecentUsers] = useState([]);
+  const [activity, setActivity] = useState([]);
+  const [health, setHealth] = useState([
+    { label: "API Status", state: "Checking..." },
+    { label: "Database Connection", state: "Checking..." },
+    { label: "Storage Service", state: "Checking..." },
+    { label: "Processing Queue", state: "Checking..." },
+  ]);
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch all dashboard data on component mount
+  useEffect(() => {
+    fetchDashboardData();
+  }, []);
+
+  /**
+   * Fetch all dashboard data
+   */
+  const fetchDashboardData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      // Fetch all data in parallel
+      const [statsData, usersData, activityData, healthData] = await Promise.all([
+        getDashboardStats(),
+        getRecentUsers(4),
+        getRecentActivity(),
+        getHealth(),
+      ]);
+
+      // Update stats
+      updateStats(statsData);
+
+      // Update recent users
+      updateRecentUsers(usersData);
+
+      // Update activity
+      updateActivity(activityData);
+
+      // Update health
+      updateHealth(healthData);
+
+    } catch (err) {
+      console.error("Error fetching dashboard data:", err);
+      setError("Failed to load dashboard data. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  /**
+   * Update stats cards with real data
+   */
+  const updateStats = (data) => {
+    setStats([
+      {
+        label: "Total Users",
+        value: formatNumber(data.totalUsers),
+        delta: "+5.2% vs last month", // TODO: Calculate from historical data
+      },
+      {
+        label: "Active Users (Today)",
+        value: formatNumber(data.activeUsers),
+        delta: "+1.8% vs yesterday", // TODO: Calculate from historical data
+      },
+      {
+        label: "Documents Processed",
+        value: formatNumber(data.documentsProcessed),
+        delta: "+12.4% vs last month", // TODO: Calculate from historical data
+      },
+      {
+        label: "Total Storage Used",
+        value: formatStorage(data.storageUsed),
+        delta: "+2.1% vs last month", // TODO: Calculate from historical data
+      },
+    ]);
+  };
+
+  /**
+   * Update recent users list
+   */
+  const updateRecentUsers = (users) => {
+    const formattedUsers = users.map(user => ({
+      name: user.name || user.username || "Unknown User",
+      email: user.email || "No email",
+      time: formatTimeAgo(user.createdAt),
+    }));
+    setRecentUsers(formattedUsers);
+  };
+
+  /**
+   * Update activity table
+   */
+  const updateActivity = (activityData) => {
+    const formattedActivity = activityData.map(log => ({
+      admin: log.admin || log.userName || "System",
+      action: log.action || log.description || "Activity",
+      time: formatDateTime(log.time || log.createdAt),
+    }));
+    setActivity(formattedActivity.slice(0, 3)); // Show latest 3
+  };
+
+  /**
+   * Update health status
+   */
+  const updateHealth = (healthData) => {
+    const healthItems = [
+      {
+        label: "API Status",
+        state: healthData?.status === "Healthy" || healthData?.isHealthy ? "Operational" : "Down",
+        variant: healthData?.status === "Healthy" || healthData?.isHealthy ? "" : "error",
+      },
+      {
+        label: "Database Connection",
+        state: healthData?.database?.status || healthData?.database || "Connected",
+        variant: healthData?.database?.status === "Connected" ? "" : "warning",
+      },
+      {
+        label: "Storage Service",
+        state: healthData?.storage?.status || "Online",
+        variant: "",
+      },
+      {
+        label: "Processing Queue",
+        state: healthData?.queue?.status || healthData?.processingQueue || "Operational",
+        variant: healthData?.queue?.delayed ? "warning" : "",
+      },
+    ];
+    setHealth(healthItems);
+  };
+
+  /**
+   * Format number with commas
+   */
+  const formatNumber = (num) => {
+    if (num === null || num === undefined) return "N/A";
+    return num.toLocaleString();
+  };
+
+  /**
+   * Format storage size
+   */
+  const formatStorage = (storage) => {
+    if (!storage || storage === "N/A") return "N/A";
+    if (typeof storage === 'string') return storage;
+
+    // If storage is in bytes, convert to GB
+    const gb = storage / (1024 * 1024 * 1024);
+    return `${gb.toFixed(2)} GB`;
+  };
+
+  /**
+   * Format time ago (e.g., "2 hours ago")
+   */
+  const formatTimeAgo = (dateString) => {
+    if (!dateString) return "Unknown";
+
+    const date = new Date(dateString);
+    const now = new Date();
+    const seconds = Math.floor((now - date) / 1000);
+
+    if (seconds < 60) return "Just now";
+    if (seconds < 3600) return `${Math.floor(seconds / 60)} minutes ago`;
+    if (seconds < 86400) return `${Math.floor(seconds / 3600)} hours ago`;
+    if (seconds < 604800) return `${Math.floor(seconds / 86400)} days ago`;
+    return date.toLocaleDateString();
+  };
+
+  /**
+   * Format date time (e.g., "2023-10-27 14:30:15")
+   */
+  const formatDateTime = (dateString) => {
+    if (!dateString) return "N/A";
+
+    const date = new Date(dateString);
+    return date.toLocaleString('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+    }).replace(',', '');
+  };
+
+  /**
+   * Handle add new user button click
+   */
+  const handleAddUser = () => {
+    // TODO: Open modal or navigate to user creation page
+    alert("Add New User functionality - to be implemented");
+  };
+
+  // Error state
+  if (error && !loading) {
+    return (
+      <div className="admin-dashboard">
+        <header className="dashboard-header">
+          <div>
+            <h1>Dashboard</h1>
+            <p style={{ color: '#ef4444' }}>{error}</p>
+          </div>
+          <button className="primary-btn" onClick={fetchDashboardData}>
+            <span className="material-symbols-outlined">refresh</span>
+            Retry
+          </button>
+        </header>
+      </div>
+    );
+  }
+
   return (
     <div className="admin-dashboard">
       <header className="dashboard-header">
@@ -47,7 +237,7 @@ export default function AdminDashboard() {
           <h1>Dashboard</h1>
           <p>Welcome back, Admin! Here's an overview of your system.</p>
         </div>
-        <button className="primary-btn">
+        <button className="primary-btn" onClick={handleAddUser}>
           <span className="material-symbols-outlined">add</span>
           Add New User
         </button>
@@ -57,8 +247,8 @@ export default function AdminDashboard() {
         {stats.map((stat) => (
           <article key={stat.label} className="stat-card">
             <p className="stat-label">{stat.label}</p>
-            <p className="stat-value">{stat.value}</p>
-            <p className="stat-delta">{stat.delta}</p>
+            <p className="stat-value">{loading ? "..." : stat.value}</p>
+            <p className="stat-delta">{loading ? "Loading..." : stat.delta}</p>
           </article>
         ))}
       </section>
@@ -101,42 +291,64 @@ export default function AdminDashboard() {
             </div>
           </div>
 
-          <ul>
-            {recentUsers.map((user) => (
-              <li key={user.email}>
-                <div className="avatar">{user.name.slice(0, 2)}</div>
-                <div>
-                  <p className="user-name">{user.name}</p>
-                  <p className="user-email">{user.email}</p>
-                </div>
-                <span className="user-time">{user.time}</span>
-              </li>
-            ))}
-          </ul>
+          {loading ? (
+            <div style={{ padding: "20px", textAlign: "center", color: "#6b7280" }}>
+              Loading users...
+            </div>
+          ) : recentUsers.length === 0 ? (
+            <div style={{ padding: "20px", textAlign: "center", color: "#6b7280" }}>
+              No recent users found
+            </div>
+          ) : (
+            <ul>
+              {recentUsers.map((user, index) => (
+                <li key={user.email + index}>
+                  <div className="avatar">
+                    {user.name.substring(0, 2).toUpperCase()}
+                  </div>
+                  <div>
+                    <p className="user-name">{user.name}</p>
+                    <p className="user-email">{user.email}</p>
+                  </div>
+                  <span className="user-time">{user.time}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </aside>
       </div>
 
       <div className="dashboard-lower">
         <section className="activity-card">
           <p className="card-title">Recent Admin Activity</p>
-          <table>
-            <thead>
-              <tr>
-                <th>Admin</th>
-                <th>Action</th>
-                <th>Timestamp</th>
-              </tr>
-            </thead>
-            <tbody>
-              {activity.map((log, index) => (
-                <tr key={index}>
-                  <td>{log.admin}</td>
-                  <td>{log.action}</td>
-                  <td>{log.time}</td>
+          {loading ? (
+            <div style={{ padding: "20px", textAlign: "center", color: "#6b7280" }}>
+              Loading activity...
+            </div>
+          ) : activity.length === 0 ? (
+            <div style={{ padding: "20px", textAlign: "center", color: "#6b7280" }}>
+              No recent activity
+            </div>
+          ) : (
+            <table>
+              <thead>
+                <tr>
+                  <th>Admin</th>
+                  <th>Action</th>
+                  <th>Timestamp</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {activity.map((log, index) => (
+                  <tr key={index}>
+                    <td>{log.admin}</td>
+                    <td>{log.action}</td>
+                    <td>{log.time}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </section>
 
         <section className="health-card">
@@ -148,7 +360,7 @@ export default function AdminDashboard() {
                   <p className="health-label">{item.label}</p>
                 </div>
                 <span className={`health-state ${item.variant ? item.variant : ""}`}>
-                  {item.state}
+                  {loading ? "..." : item.state}
                 </span>
               </li>
             ))}
@@ -158,5 +370,3 @@ export default function AdminDashboard() {
     </div>
   );
 }
-
-

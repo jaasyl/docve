@@ -45,7 +45,12 @@ export default function MyShelves() {
     setSelectedShelf(null);
   };
 
+  /**
+   * Handle shelf selection from SideNav
+   * Receives shelf object with {id, name, ...} from API
+   */
   const handleShelfSelect = (shelf) => {
+    // Store the entire shelf object (contains id, name, etc.)
     setSelectedShelf(shelf);
     setActiveTab("shelf");
   };
